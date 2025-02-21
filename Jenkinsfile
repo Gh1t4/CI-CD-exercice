@@ -22,7 +22,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8014:8080 --name mon_nginx mon-nginx:v1'
+                sh 'docker run -d -p 8014:80 --name mon_nginx mon-nginx:v1'
             }
         }
     }
