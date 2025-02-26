@@ -8,9 +8,15 @@ pipeline {
             }
         }
 
-        stage('Exécuter le script Python') {
+        stage('Compiler le code Java') {
             steps {
-                sh 'python3 app.py'
+                sh 'javac Main.java'
+            }
+        }
+
+        stage('Exécuter le programme') {
+            steps {
+                sh 'java Main'
             }
         }
     }
