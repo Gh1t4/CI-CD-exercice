@@ -2,28 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Docker Image') {
+        stage('Cloner le dépôt') {
             steps {
-                sh 'docker build -t mon-nginx:latest .'
+                git 'https://github.com/Gh1t4/CI-CD-exercice.git'
             }
         }
 
-        stage('Retag Image') {
+        stage('Exécuter le script Python') {
             steps {
-                sh 'docker tag mon-nginx:latest mon-nginx:v1'
-            }
-        }
-
-        stage('List Docker Images') {
-            steps {
-                sh 'docker images'
-            }
-        }
-
-        stage('Run Container') {
-            steps {
-                sh 'docker run -d -p 8014:80 --name mon_nginx mon-nginx:v1'
+                sh 'python3 app.py'
             }
         }
     }
 }
+
